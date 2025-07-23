@@ -1,0 +1,7 @@
+security:
+  jwt:
+    access-token-expiration-ms: "${JWT_ACCESS_TOKEN_EXPIRATION_MS}"
+    refresh-token-expiration-ms: "${JWT_REFRESH_TOKEN_EXPIRATION_MS}"
+  cors:
+    allowed-origins: "${*}"
+  disposable-email: 10minutemail,20minutemail,33mail,5ymail,anonbox,guerrillamail,mailinator,maildrop,mailnesia,moakt,my10minutemail,throwawaymail,trashmail,temp-mail,tempmail,truemail,yopmail

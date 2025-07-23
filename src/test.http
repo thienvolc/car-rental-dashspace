@@ -1,0 +1,73 @@
+@baseUrl = http://localhost:8080/api/v1
+@accessToken =
+
+### === SEND OTP ===
+POST {{baseUrl}}/verification/registration
+Content-Type: application/json
+
+{
+  "recepient": "ttt2042005@gmail.com",
+  "channel": "EMAIL"
+}
+
+### === VERIFY OTP ===
+POST {{baseUrl}}/verification/registration/verify
+Content-Type: application/json
+
+{
+  "recepient": "ttt2042005@gmail.com",
+  "code": "559140"
+}
+
+### === RENTER REGISTRATION ===
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "email": "ttt2042005@gmail.com",
+  "password": "testpassword",
+  "otpCode": "559140"
+}
+
+### === LOGIN ===
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "ttt2042005@gmail.com",
+  "password": "testpassword",
+  "deviceInfo": "Laptop - Chrome"
+}
+
+> {% client.global.set("accessToken", "Bearer " + response.body.token) %}
+
+### ===== GET CURRENT USER INFO =====
+GET {{baseUrl}}/user/me
+Authorization: {{accessToken}}
+Accept: application/json
+
+### === CREATE NEW USER ===
+POST {{baseUrl}}/users
+Content-Type: application/json
+Authorization: {{accessToken}}
+
+{
+  "name": "Nguyen Van A",
+  "email": "vana@example.com",
+  "role": "admin"
+}
+
+### === UPDATE USER ===
+PUT {{baseUrl}}/users/1
+Authorization: {{accessToken}}
+Content-Type: application/json
+
+{
+  "name": "Nguyen Van B"
+}
+
+###
+
+### === DELETE USER ===
+DELETE {{baseUrl}}/users/1
+Authorization: {{accessToken}}

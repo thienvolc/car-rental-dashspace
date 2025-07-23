@@ -1,0 +1,3 @@
+otp:
+  expiration-sec: "${OTP_EXPIRATION_SEC}"
+  code-length: "${OTP_CODE_LENGTH}"

@@ -1,0 +1,5 @@
+package dashspace.fun.car_rental_server.user.enums;
+
+public enum UserStatus {
+    ACTIVE, INACTIVE, BANNED
+}

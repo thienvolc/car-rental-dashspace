@@ -1,0 +1,6 @@
+cloudinary:
+  cloud-name: "${CLOUDINARY_CLOUD_NAME}"
+  api-key: "${CLOUDINARY_API_KEY}"
+  api-secret: "${CLOUDINARY_API_SECRET}"
+  max-file-size: "${CLOUDINARY_MAX_FILE_SIZE}"
+  upload-preset: "${CLOUDINARY_UPLOAD_PRESET}"
