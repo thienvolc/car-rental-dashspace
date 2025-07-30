@@ -10,5 +10,5 @@ public interface RentalRepository extends JpaRepository<Rental, Integer> {
 
     @SuppressWarnings("NullableProblems")
     @EntityGraph(attributePaths = {"vehicle", "renter"})
-    Optional<Rental> findFullById(Integer id);
+    Optional<Rental> findById(Integer id);
 }

@@ -68,7 +68,7 @@ CREATE TABLE session
     user_id               INT                 NOT NULL,
     refresh_token         TEXT                NOT NULL,
     refresh_token_expires TIMESTAMP           NOT NULL,
-    device_info           VARCHAR(500),
+    device_info           VARCHAR(255),
     ip_address            VARCHAR(45),
     user_agent            TEXT,
     is_active             BOOLEAN             DEFAULT TRUE,
@@ -253,6 +253,17 @@ CREATE TABLE vehicle_document
 -- ===============================================
 
 -- Table: rental (add essential business fields)
+
+create table `vehicle_availability`
+(
+    vehicle_id int    not null,
+    date       DATE   not null,
+    price      double not null,
+    status     enum ('AVAILABLE', 'HELD', 'RENTER'),
+
+    primary key (vehicle_id, date)
+);
+
 CREATE TABLE rental
 (
     id                    INT PRIMARY KEY AUTO_INCREMENT,
@@ -262,10 +273,10 @@ CREATE TABLE rental
     pickup_date           DATETIME           NOT NULL,
     return_date           DATETIME           NOT NULL,
     actual_return_date    DATETIME           NULL,
-    daily_rate            DECIMAL(10, 2)     NOT NULL,
     total_amount          DECIMAL(12, 2)     NOT NULL,
     deposit_amount        DECIMAL(10, 2)     NOT NULL DEFAULT 0,
-    status                ENUM ('PENDING', 'APPROVED', 'REJECTED', 'ACTIVE', 'COMPLETED', 'CANCELLED') DEFAULT 'PENDING',
+    subtoal               DECIMAL(10, 2)     NOT NULL DEFAULT 0,
+    status                ENUM ('PAYMENT_PROCESSING', 'PENDING', 'APPROVED', 'REJECTED', 'ACTIVE', 'COMPLETED', 'CANCELLED') DEFAULT 'PENDING',
     approved_at           TIMESTAMP          NULL,
     approved_by_user_id   INT                NULL,
     pickup_location       TEXT,

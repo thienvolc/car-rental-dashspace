@@ -19,7 +19,7 @@ import java.util.TimeZone;
 @RequiredArgsConstructor
 class VNPayParamsBuilder {
 
-    private static final BigDecimal DEFAUTL_MULTIPLIER = new BigDecimal("100L");
+    private static final BigDecimal DEFAUTL_MULTIPLIER = new BigDecimal("100");
     private static final String VERSION = "2.1.0";
     private static final String COMMAND = "pay";
     private static final String CURRENCY = "VND";

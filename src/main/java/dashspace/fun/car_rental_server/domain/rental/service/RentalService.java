@@ -107,7 +107,7 @@ public class RentalService {
     }
 
     public void markPaid(Integer rentalId) throws BusinessException {
-        var rental = repository.findFullById(rentalId)
+        var rental = repository.findById(rentalId)
                 .orElseThrow(() -> new BusinessException(ResponseCode.RENTAL_NOT_FOUND));
 
         rental.setStatus(RentalStatus.PENDING);
@@ -123,7 +123,7 @@ public class RentalService {
     }
 
     public RentalStatusResponse getRentalStatus(Integer rentalId) {
-        var rental = repository.findFullById(rentalId)
+        var rental = repository.findById(rentalId)
                 .orElseThrow(() -> new BusinessException(ResponseCode.RENTAL_NOT_FOUND));
         return mapper.toRentalStatusResponse(rental);
     }

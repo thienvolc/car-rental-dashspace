@@ -2,7 +2,6 @@ package dashspace.fun.car_rental_server.domain.vehicle.repository;
 
 import dashspace.fun.car_rental_server.domain.user.entity.User;
 import dashspace.fun.car_rental_server.domain.vehicle.entity.Vehicle;
-import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -16,13 +15,15 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
     boolean existsByLicensePlate(String licensePlate);
 
     @EntityGraph(attributePaths = {"images", "location", "vehicleDocument"})
-    List<Vehicle> findAllByOwner(User owner);
+    List<Vehicle> findByOwner(User owner);
 
+    @SuppressWarnings("NullableProblems")
     @EntityGraph(attributePaths = {"owner", "images", "location", "vehicleDocument"})
-    Optional<Vehicle> findFullById(Integer id);
+    Optional<Vehicle> findById(Integer id);
 
+    @SuppressWarnings("NullableProblems")
     @EntityGraph(attributePaths = {"owner", "images", "location", "vehicleDocument"})
-    Page<Vehicle> findFullAll(Pageable pageable);
+    Page<Vehicle> findAll(Pageable pageable);
 
     boolean existsByOwnerAndId(User owner, Integer id);
 }

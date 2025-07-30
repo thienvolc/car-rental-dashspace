@@ -78,3 +78,5 @@ spring:
       - classpath:config/security.yml
       - classpath:config/health.yml
       - classpath:config/payment.yml
+
+#debug: true

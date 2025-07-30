@@ -71,7 +71,7 @@ public class VehicleService {
 
     public List<VehicleDto> getAllVehiclesByUserId(Integer userId) {
         var userRef = userRepository.getReferenceById(userId);
-        return repository.findAllByOwner(userRef).stream()
+        return repository.findByOwner(userRef).stream()
                 .map(mapper::toDto)
                 .toList();
     }
@@ -82,7 +82,7 @@ public class VehicleService {
     }
 
     public Vehicle tryFindVehicleById(Integer vehicleId) {
-        return repository.findFullById(vehicleId)
+        return repository.findById(vehicleId)
                 .orElseThrow(() -> new BusinessException(ResponseCode.VEHICLE_NOT_FOUND));
     }
 
@@ -91,7 +91,7 @@ public class VehicleService {
         Sort sort = PaginationUtil.buildSort(sortExpressions);
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        Page<Vehicle> vehicles = repository.findFullAll(pageable);
+        Page<Vehicle> vehicles = repository.findAll(pageable);
         List<ModerationViewVehicleDto> vehicleDtos = vehicles.stream()
                 .map(mapper::toModerationViewVehicleDto)
                 .toList();
@@ -109,7 +109,7 @@ public class VehicleService {
         Sort sort = PaginationUtil.buildSort(sortExpressions);
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        Page<Vehicle> vehicles = repository.findFullAll(pageable);
+        Page<Vehicle> vehicles = repository.findAll(pageable);
         List<SearchVehicleDto> vehicleDtos = vehicles.stream()
                 .map(mapper::toSearchVehicleDto)
                 .toList();

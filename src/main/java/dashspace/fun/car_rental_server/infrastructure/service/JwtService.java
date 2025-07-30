@@ -82,7 +82,7 @@ public class JwtService {
     }
 
     private void verifyRefreshToken(Claims claims) {
-        if (isRefreshToken(claims)) {
+        if (!isRefreshToken(claims)) {
             throw new RuntimeException("Invalid token type");
         }
 
