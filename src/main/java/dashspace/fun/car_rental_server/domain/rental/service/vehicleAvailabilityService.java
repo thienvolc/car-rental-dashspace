@@ -28,7 +28,7 @@ public class vehicleAvailabilityService {
             throw new BusinessException(ResponseCode.RENTAL_DAYS_EXCEEDED);
         }
 
-        var availableDays = repository.findVehicleAvailabilities(
+        var availableDays = repository.findAndLockVehicleAvailabilities(
                 vehicleId,
                 pickupDate,
                 returnDate.minusDays(1)

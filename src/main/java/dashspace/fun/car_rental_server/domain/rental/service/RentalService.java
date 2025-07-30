@@ -18,6 +18,7 @@ import dashspace.fun.car_rental_server.domain.vehicle.constant.VehicleStatus;
 import dashspace.fun.car_rental_server.domain.vehicle.service.VehicleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
@@ -34,6 +35,7 @@ public class RentalService {
     private final RentalMapper mapper;
     private final RentalRepository repository;
 
+    @Transactional
     public RentalResponse rent(RentalRequest request, Integer userId, String ipAddress) {
         validateRequest(request);
         validateVehicle(request.vehicleId(), userId);
@@ -106,6 +108,7 @@ public class RentalService {
         return repository.save(rental);
     }
 
+    @Transactional
     public void markPaid(Integer rentalId) throws BusinessException {
         var rental = repository.findById(rentalId)
                 .orElseThrow(() -> new BusinessException(ResponseCode.RENTAL_NOT_FOUND));
