@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class vehicleAvailabilityService {
+public class VehicleAvailabilityService {
 
     private static final int MAX_RENTAL_DAYS = 30;
 

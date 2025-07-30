@@ -26,7 +26,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class RentalService {
 
-    private final vehicleAvailabilityService availabilityService;
+    private final VehicleAvailabilityService availabilityService;
     private final VehicleService vehicleService;
     private final UserService userService;
     private final PricingService pricingService;
